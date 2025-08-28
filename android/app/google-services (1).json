@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1082597021869",
+    "project_id": "flutter-project-hvl289",
+    "storage_bucket": "flutter-project-hvl289.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082597021869:android:cc08e7e8e739f89acd4e24",
+        "android_client_info": {
+          "package_name": "com.ritostore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEfO-m7wakor2fv3L8wQYXy09kUMJj264"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082597021869:android:8242cae8c9d8ba3fcd4e24",
+        "android_client_info": {
+          "package_name": "com.ritostore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEfO-m7wakor2fv3L8wQYXy09kUMJj264"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
