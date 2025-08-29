@@ -1,45 +1,79 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
-
-# IntelliJ related
-*.iml
-*.ipr
-*.iws
-.idea/
-
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
 # Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
 .dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
+.packages
 .pub-cache/
 .pub/
-/build/
+build/
+coverage/
+lib/generated_plugin_registrant.dart
 
-# Symbolication related
-app.*.symbols
+# Android related
+.gradle/
+local.properties
+*.iml
+*.hprof
+*.apk
+*.aar
+*.dex
+*.class
+*.jar
+*.keystore
+*.jks
+**/GeneratedPluginRegistrant.java
 
-# Obfuscation related
-app.*.map.json
+# iOS related
+ios/Flutter/.last_build_id
+ios/Pods/
+ios/Runner/GeneratedPluginRegistrant.*
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
+*.xcuserstate
+*.xcworkspace
+*.lock
+*.moved-aside
+DerivedData/
+*.xcuserdatad
+*.xccheckout
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# macOS
+macos/Flutter/GeneratedPluginRegistrant.swift
+macos/Pods/
+macos/Runner/GeneratedPluginRegistrant.*
+*.xcworkspace
+DerivedData/
+
+# Windows
+windows/Flutter/GeneratedPluginRegistrant.cpp
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/generated_plugin_registrant.h
+
+# Linux
+linux/flutter/generated_plugin_registrant.cc
+linux/flutter/generated_plugin_registrant.h
+
+# Web
+lib/generated_plugin_registrant.dart
+
+# VS Code & IntelliJ
+.vscode/
+.idea/
+
+# Others
+*.log
+*.tmp
+*.temp
+*.swp
+*.DS_Store
+
+# NDK / C++ build
+.cxx/
+
+# Flutter specific keys and properties
+key.properties
+
+# Don’t include firebase/google-services config accidentally
+google-services.json
+GoogleService-Info.plist
+
