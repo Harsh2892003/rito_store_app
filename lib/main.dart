@@ -15,7 +15,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Scaffold(body: BackgroundScreen()));
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(body: BackgroundScreen()),
+    );
   }
 }
 
@@ -29,32 +32,53 @@ class BackgroundScreen extends StatelessWidget {
         image: DecorationImage(
           image: AssetImage("assets/RITOSTORE.png"),
           fit: BoxFit.cover,
+          opacity: 0.98,
         ),
       ),
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Title
             const Padding(
               padding: EdgeInsets.only(top: 30.0),
               child: Text(
                 "RITO STORE",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 28,
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
-                  letterSpacing: 2,
+                  letterSpacing: 3,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 6,
+                      color: Colors.black54,
+                      offset: Offset(2, 2),
+                    ),
+                  ],
                 ),
               ),
             ),
 
+            // Buttons
             Padding(
               padding: const EdgeInsets.only(top: 20.0, right: 16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepPurple,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                        vertical: 12,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      elevation: 4,
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -63,10 +87,24 @@ class BackgroundScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text("Login"),
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
                   const SizedBox(width: 10),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.teal,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                        vertical: 12,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      elevation: 4,
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -75,7 +113,10 @@ class BackgroundScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text("Sign Up"),
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
                 ],
               ),
@@ -89,22 +130,35 @@ class BackgroundScreen extends StatelessWidget {
               child: Text(
                 "Our Items :",
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 26,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 5,
+                      color: Colors.black45,
+                      offset: Offset(1, 2),
+                    ),
+                  ],
                 ),
               ),
             ),
 
-            // Items Section
+            // Items Grid
             Expanded(
-              child: ListView(
-                children: const [
-                  ItemRow(title: "Monitors"),
-                  ItemRow(title: "Printers"),
-                  ItemRow(title: "Keyboards"),
-                  ItemRow(title: "Mouse"),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: GridView.count(
+                  crossAxisCount: 4,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
+                  children: const [
+                    ItemBox(title: "Monitors", icon: Icons.tv),
+                    ItemBox(title: "Printers", icon: Icons.print),
+                    ItemBox(title: "Keyboards", icon: Icons.keyboard),
+                    ItemBox(title: "Mouse", icon: Icons.mouse),
+                  ],
+                ),
               ),
             ),
           ],
@@ -114,24 +168,57 @@ class BackgroundScreen extends StatelessWidget {
   }
 }
 
-class ItemRow extends StatelessWidget {
+class ItemBox extends StatelessWidget {
   final String title;
-  const ItemRow({super.key, required this.title});
+  final IconData icon;
+  const ItemBox({super.key, required this.title, required this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      color: const Color.fromARGB(42, 0, 0, 0),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+      color: Colors.black.withOpacity(0.5),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      elevation: 6,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: () {
+          // Show dialog when tapped
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              backgroundColor: Colors.white,
+              title: const Text(
+                "Login Required",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              content: const Text("Please login or sign up before use."),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text("OK"),
+                ),
+              ],
+            ),
+          );
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: Colors.white, size: 40),
+            const SizedBox(height: 5),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 1,
+              ),
+            ),
+          ],
         ),
       ),
     );
