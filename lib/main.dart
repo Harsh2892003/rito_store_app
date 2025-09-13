@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:final_project/LoginScreen.dart';
 import 'package:final_project/SignUpScreen.dart';
@@ -6,6 +7,8 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Ensure any debug baseline overlays are disabled globally
+  debugPaintBaselinesEnabled = false;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
@@ -69,7 +72,7 @@ class BackgroundScreen extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurple,
+                      backgroundColor: const Color.fromARGB(148, 104, 58, 183),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 18,
                         vertical: 12,
@@ -95,7 +98,7 @@ class BackgroundScreen extends StatelessWidget {
                   const SizedBox(width: 10),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal,
+                      backgroundColor: const Color.fromARGB(148, 104, 58, 183),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 18,
                         vertical: 12,
@@ -157,6 +160,10 @@ class BackgroundScreen extends StatelessWidget {
                     ItemBox(title: "Printers", icon: Icons.print),
                     ItemBox(title: "Keyboards", icon: Icons.keyboard),
                     ItemBox(title: "Mouse", icon: Icons.mouse),
+                    ItemBox(title: "Webcams", icon: Icons.videocam),
+                    ItemBox(title: "Headphones", icon: Icons.headphones),
+                    ItemBox(title: "Speakers", icon: Icons.speaker),
+                    ItemBox(title: "Controllers", icon: Icons.sports_esports),
                   ],
                 ),
               ),
@@ -176,7 +183,7 @@ class ItemBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black.withOpacity(0.5),
+      color: Colors.black.withValues(alpha: 0.5),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 6,
       child: InkWell(

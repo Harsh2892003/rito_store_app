@@ -28,16 +28,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
         loginId.isEmpty ||
         pass.isEmpty ||
         confirmPass.isEmpty) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("All fields are required!")));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("All fields are required!")),
+        );
+      }
       return;
     }
 
     if (pass != confirmPass) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Passwords do not match!")));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Passwords do not match!")),
+        );
+      }
       return;
     }
 
@@ -52,9 +56,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
         "createdAt": FieldValue.serverTimestamp(),
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("User registered successfully!")),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("User registered successfully!")),
+        );
+      }
 
       // Clear fields
       _nameController.clear();
@@ -62,9 +68,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       _passwordController.clear();
       _confirmPasswordController.clear();
     } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Error: $e")));
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Error: $e")));
+      }
     }
 
     setState(() => _isLoading = false);

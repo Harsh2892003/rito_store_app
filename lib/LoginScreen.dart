@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/LandingScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -38,31 +39,21 @@ class _LoginScreenState extends State<LoginScreen> {
         var userData = userSnapshot.docs.first.data() as Map<String, dynamic>;
         String userName = userData["name"];
 
-        // Show success dialog with name
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: const Text("Login Successful! "),
-              content: Text("Welcome $userName!"),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context); // close dialog
-                    // Optionally navigate to home page here
-                  },
-                  child: const Text("OK"),
-                ),
-              ],
-            );
-          },
+        // Navigate to the landing screen and clear back stack
+        if (!mounted) return;
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => LandingScreen(userName: userName)),
+          (route) => false,
         );
       } else {
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Incorrect ID or Password")),
         );
       }
     } catch (e) {
+      if (!mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text("Error: $e")));
