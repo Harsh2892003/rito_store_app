@@ -152,7 +152,7 @@ class BackgroundScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: GridView.count(
-                  crossAxisCount: 4,
+                  crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
                   children: const [

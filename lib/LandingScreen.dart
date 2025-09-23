@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:final_project/main.dart';
+import 'package:final_project/CategoryPage.dart';
 
 class LandingScreen extends StatelessWidget {
   final String userName;
@@ -89,20 +90,49 @@ class LandingScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: GridView.count(
-                    crossAxisCount: 4,
+                    crossAxisCount: 2,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    children: const [
-                      _ShopItem(title: "Monitors", icon: Icons.tv),
-                      _ShopItem(title: "Printers", icon: Icons.print),
-                      _ShopItem(title: "Keyboards", icon: Icons.keyboard),
-                      _ShopItem(title: "Mouse", icon: Icons.mouse),
-                      _ShopItem(title: "Webcams", icon: Icons.videocam),
-                      _ShopItem(title: "Headphones", icon: Icons.headphones),
-                      _ShopItem(title: "Speakers", icon: Icons.speaker),
+                    children: [
+                      _ShopItem(
+                        title: "Monitors",
+                        icon: Icons.tv,
+                        userName: userName,
+                      ),
+                      _ShopItem(
+                        title: "Printers",
+                        icon: Icons.print,
+                        userName: userName,
+                      ),
+                      _ShopItem(
+                        title: "Keyboards",
+                        icon: Icons.keyboard,
+                        userName: userName,
+                      ),
+                      _ShopItem(
+                        title: "Mouse",
+                        icon: Icons.mouse,
+                        userName: userName,
+                      ),
+                      _ShopItem(
+                        title: "Webcams",
+                        icon: Icons.videocam,
+                        userName: userName,
+                      ),
+                      _ShopItem(
+                        title: "Headphones",
+                        icon: Icons.headphones,
+                        userName: userName,
+                      ),
+                      _ShopItem(
+                        title: "Speakers",
+                        icon: Icons.speaker,
+                        userName: userName,
+                      ),
                       _ShopItem(
                         title: "Controllers",
                         icon: Icons.sports_esports,
+                        userName: userName,
                       ),
                     ],
                   ),
@@ -119,7 +149,13 @@ class LandingScreen extends StatelessWidget {
 class _ShopItem extends StatelessWidget {
   final String title;
   final IconData icon;
-  const _ShopItem({required this.title, required this.icon});
+  final String userName;
+
+  const _ShopItem({
+    required this.title,
+    required this.icon,
+    required this.userName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -130,10 +166,16 @@ class _ShopItem extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () {
-          ScaffoldMessenger.of(
+          Navigator.push(
             context,
-          ).showSnackBar(SnackBar(content: Text('Opening $title...')));
-          // TODO: Navigate to detail pages for each category if needed.
+            MaterialPageRoute(
+              builder: (context) => CategoryPage(
+                categoryName: title,
+                categoryIcon: icon,
+                userName: userName,
+              ),
+            ),
+          );
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
